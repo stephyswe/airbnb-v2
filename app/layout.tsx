@@ -1,10 +1,10 @@
 import { Nunito } from "next/font/google";
 
 import Navbar from "@/app/components/navbar/Navbar";
+import RegisterModal from "@/app/components/modals/RegisterModal";
 
 import "./globals.css";
 import ClientOnly from "./components/ClientOnly";
-import Modal from "./components/modals/Modal";
 
 export const metadata = {
   title: "Create Next App",
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ClientOnly>
-          <Modal actionLabel="Submit" title="Hello World" isOpen />
+          <RegisterModal />
           <Navbar />
         </ClientOnly>
         {children}
