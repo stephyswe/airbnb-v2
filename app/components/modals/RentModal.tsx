@@ -2,10 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import dynamic from "next/dynamic";
 
 import useRentModal from "@/app/hooks/useRentModal";
 
 import Modal from "./Modal";
+import CountrySelect from "../inputs/CountrySelect";
 
 import CategoryInput from "../inputs/CategoryInput";
 import { categories } from "../navbar/Categories";
@@ -22,6 +24,8 @@ enum STEPS {
 
 const RentModal = () => {
   const rentModal = useRentModal();
+
+  const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   const onBack = () => {
@@ -69,7 +73,16 @@ const RentModal = () => {
     },
   });
 
+  const location = watch("location");
   const category = watch("category");
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../Map"), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -97,7 +110,6 @@ const RentModal = () => {
       >
         {categories.map((item) => (
           <div key={item.label} className="col-span-1">
-            {item.label}
             <CategoryInput
               onClick={(category) => setCustomValue("category", category)}
               selected={category === item.label}
@@ -110,13 +122,29 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your place located?"
+          subtitle="Help guests find you!"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue("location", value)}
+        />
+        <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
   return (
     <Modal
-      // disabled={isLoading}
+      disabled={isLoading}
       isOpen={rentModal.isOpen}
       title="Airbnb your home!"
       actionLabel={actionLabel}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       onClose={rentModal.onClose}
