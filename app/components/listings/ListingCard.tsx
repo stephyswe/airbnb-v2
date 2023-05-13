@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 
-// import HeartButton from "../HeartButton";
+import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
 
@@ -102,7 +102,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             right-3
           "
           >
-            {/* <HeartButton listingId={data.id} currentUser={currentUser} /> */}
+            <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
         <div className="font-semibold text-lg">
