@@ -1,8 +1,8 @@
-import EmptyState from "@/app/components/EmptyState";
-import ClientOnly from "@/app/components/ClientOnly";
+import EmptyState from "@/components/EmptyState";
+import ClientOnly from "@/components/ClientOnly";
 
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getListings from "@/app/actions/getListings";
+import getCurrentUser from "@/libs/actions/getCurrentUser";
+import getListings from "@/libs/actions/getListings";
 
 import PropertiesClient from "./PropertiesClient";
 
