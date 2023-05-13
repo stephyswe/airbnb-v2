@@ -23,7 +23,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-  // reservations?: SafeReservation[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -32,16 +32,16 @@ interface ListingClientProps {
 
 const ListingClient: React.FC<ListingClientProps> = ({
   listing,
-  // reservations = [],
+  reservations = [],
   currentUser,
 }) => {
   const loginModal = useLoginModal();
   const router = useRouter();
 
-  /*const disabledDates = useMemo(() => {
+  const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
-     reservations.forEach((reservation: any) => {
+    reservations.forEach((reservation: any) => {
       const range = eachDayOfInterval({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate),
@@ -51,7 +51,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     });
 
     return dates;
-  }, [reservations]); */
+  }, [reservations]);
 
   const category = useMemo(() => {
     return categories.find((items) => items.label === listing.category);
@@ -148,7 +148,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
-                // disabledDates={disabledDates}
+                disabledDates={disabledDates}
               />
             </div>
           </div>

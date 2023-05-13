@@ -8,13 +8,13 @@ import "react-date-range/dist/theme/default.css";
 interface DatePickerProps {
   value: Range;
   onChange: (value: RangeKeyDict) => void;
-  // disabledDates?: Date[];
+  disabledDates?: Date[];
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
   value,
   onChange,
-  // disabledDates,
+  disabledDates,
 }) => {
   return (
     <DateRange
@@ -25,7 +25,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
       direction="vertical"
       showDateDisplay={false}
       minDate={new Date()}
-      // disabledDates={disabledDates}
+      disabledDates={disabledDates}
     />
   );
 };
