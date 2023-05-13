@@ -32,7 +32,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           >
             <Logo />
             <Search />
-            <UserMenu currentUser={currentUser} />
+            <div className="flex">
+              <UserMenu currentUser={currentUser} />
+              {process.env.TYPE}
+            </div>
           </div>
         </Container>
       </div>
