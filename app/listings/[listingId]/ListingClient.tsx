@@ -14,7 +14,7 @@ import Container from "@/app/components/Container";
 import { categories } from "@/app/components/navbar/Categories";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
-/* import ListingReservation from "@/app/components/listings/ListingReservation"; */
+import ListingReservation from "@/app/components/listings/ListingReservation";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -23,7 +23,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-  reservations?: SafeReservation[];
+  // reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -32,16 +32,16 @@ interface ListingClientProps {
 
 const ListingClient: React.FC<ListingClientProps> = ({
   listing,
-  reservations = [],
+  // reservations = [],
   currentUser,
 }) => {
   const loginModal = useLoginModal();
   const router = useRouter();
 
-  const disabledDates = useMemo(() => {
+  /*const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
-    reservations.forEach((reservation: any) => {
+     reservations.forEach((reservation: any) => {
       const range = eachDayOfInterval({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate),
@@ -51,7 +51,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     });
 
     return dates;
-  }, [reservations]);
+  }, [reservations]); */
 
   const category = useMemo(() => {
     return categories.find((items) => items.label === listing.category);
@@ -77,7 +77,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       .then(() => {
         toast.success("Listing reserved!");
         setDateRange(initialDateRange);
-        router.push("/trips");
+        // router.push("/trips");
       })
       .catch(() => {
         toast.error("Something went wrong.");
@@ -141,15 +141,15 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 md:col-span-3
               "
             >
-              {/* <ListingReservation
+              <ListingReservation
                 price={listing.price}
                 totalPrice={totalPrice}
                 onChangeDate={(value) => setDateRange(value)}
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
-                disabledDates={disabledDates}
-              /> */}
+                // disabledDates={disabledDates}
+              />
             </div>
           </div>
         </div>
