@@ -28,6 +28,7 @@ const Home = async ({ searchParams }: HomeProps) => {
 
   return (
     <ClientOnly>
+      Type is: {process.env.TYPE}
       <Container>
         <div
           className="
