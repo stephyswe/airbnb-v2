@@ -8,7 +8,6 @@ import RentModal from "@/components/modals/RentModal";
 import ToasterProvider from "@/libs/providers/ToastProvider";
 
 import "./globals.css";
-import ClientOnly from "@/components/ClientOnly";
 import getCurrentUser from "../libs/actions/getCurrentUser";
 import SearchModal from "@/components/modals/SearchModal";
 
@@ -31,14 +30,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ClientOnly>
-          <ToasterProvider />
-          <LoginModal />
-          <RegisterModal />
-          <SearchModal />
-          <RentModal />
-          <Navbar currentUser={currentUser} />
-        </ClientOnly>
+        <ToasterProvider />
+        <LoginModal />
+        <RegisterModal />
+        <SearchModal />
+        <RentModal />
+        <Navbar currentUser={currentUser} />
+
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
