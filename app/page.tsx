@@ -1,12 +1,11 @@
 export const dynamic = "force-dynamic";
 
 import Container from "@/components/Container";
-import ListingCard from "@/components/listings/ListingCard";
+import ListingCardContainer from "@/components/listings/ListingCardContainer";
 import EmptyState from "@/components/EmptyState";
 
 import getListings, { IListingsParams } from "@/libs/actions/getListings";
 import getCurrentUser from "@/libs/actions/getCurrentUser";
-import ListingCardContainer from "../components/listings/ListingCardContainer";
 
 interface HomeProps {
   searchParams: IListingsParams;

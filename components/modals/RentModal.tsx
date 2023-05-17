@@ -9,14 +9,14 @@ import { useMemo, useState } from "react";
 
 import useRentModal from "@/libs/hooks/useRentModal";
 
-import Modal from "./Modal";
-import Counter from "../inputs/Counter";
-import CategoryInput from "../inputs/CategoryInput";
-import CountrySelect from "../inputs/CountrySelect";
-import { categories } from "../navbar/Categories";
-import ImageUpload from "../inputs/ImageUpload";
-import Input from "../inputs/Input";
-import Heading from "../Heading";
+import Modal from "@/components/modals/Modal";
+import Counter from "@/components/inputs/Counter";
+import CategoryInput from "@/components/inputs/CategoryInput";
+import CountrySelect from "@/components/inputs/CountrySelect";
+import { categories } from "@/components/navbar/Categories";
+import ImageUpload from "@/components/inputs/ImageUpload";
+import Input from "@/components/inputs/Input";
+import Heading from "@/components/Heading";
 
 enum STEPS {
   CATEGORY = 0,
@@ -64,7 +64,7 @@ const RentModal = () => {
 
   const Map = useMemo(
     () =>
-      dynamic(() => import("../Map"), {
+      dynamic(() => import("@/components/Map"), {
         ssr: false,
       }),
     []

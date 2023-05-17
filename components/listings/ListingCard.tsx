@@ -9,8 +9,8 @@ import useCountries from "@/libs/hooks/useCountries";
 import { SafeListing, SafeReservation } from "@/libs/types";
 import { User } from "@prisma/client";
 
-import HeartButton from "../HeartButton";
-import Button from "../Button";
+import HeartButton from "@/components/HeartButton";
+import Button from "@/components/Button";
 
 interface ListingCardProps {
   data: SafeListing;

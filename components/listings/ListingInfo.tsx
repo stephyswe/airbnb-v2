@@ -6,10 +6,10 @@ import { IconType } from "react-icons";
 import useCountries from "@/libs/hooks/useCountries";
 import { SafeUser } from "@/libs/types";
 
-import Avatar from "../Avatar";
-import ListingCategory from "./ListingCategory";
+import Avatar from "@/components/Avatar";
+import ListingCategory from "@/components/listings/ListingCategory";
 
-const Map = dynamic(() => import("../Map"), {
+const Map = dynamic(() => import("@/components/Map"), {
   ssr: false,
 });
 

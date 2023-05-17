@@ -3,9 +3,9 @@ import EmptyState from "@/components/EmptyState";
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getReservations from "@/libs/actions/getReservations";
 
-import Heading from "../../components/Heading";
-import Container from "../../components/Container";
-import ListingCardContainerAction from "../../components/listings/ListingCardContainerAction";
+import Heading from "@/components/Heading";
+import Container from "@/components/Container";
+import ListingCardContainerAction from "@/components/listings/ListingCardContainerAction";
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();

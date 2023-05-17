@@ -1,10 +1,12 @@
 "use client";
 
 import { User } from "@prisma/client";
-import { useDeletion } from "../../libs/axios";
-import ListingCard from "./ListingCard";
-import ContainerCard from "../ContainerCard";
-import { SafeListing, SafeReservation } from "../../libs/types";
+
+import ListingCard from "@/components/listings/ListingCard";
+import ContainerCard from "@/components/ContainerCard";
+
+import { SafeListing, SafeReservation } from "@/libs/types";
+import { useDeletion } from "@/libs/axios";
 
 interface CustomProps {
   data: SafeListing[] | SafeReservation[];

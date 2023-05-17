@@ -1,8 +1,8 @@
-import Categories from "./Categories";
-import Container from "../Container";
-import Logo from "./Logo";
-import Search from "./Search";
-import UserMenu from "./UserMenu";
+import Categories from "@/components/navbar/Categories";
+import Container from "@/components/Container";
+import Logo from "@/components/navbar/Logo";
+import Search from "@/components/navbar/Search";
+import UserMenu from "@/components/navbar/UserMenu";
 import { User } from "@prisma/client";
 
 interface NavbarProps {

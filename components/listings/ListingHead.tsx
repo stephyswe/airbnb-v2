@@ -4,8 +4,8 @@ import Image from "next/image";
 
 import useCountries from "@/libs/hooks/useCountries";
 
-import Heading from "../Heading";
-import HeartButton from "../HeartButton";
+import Heading from "@/components/Heading";
+import HeartButton from "@/components/HeartButton";
 import { User } from "@prisma/client";
 
 interface ListingHeadProps {

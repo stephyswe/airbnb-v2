@@ -1,12 +1,10 @@
 import EmptyState from "@/components/EmptyState";
-
-import getFavoriteListings from "@/libs/actions/getFavoriteListings";
-
 import Container from "@/components/Container";
+import ListingCardContainer from "@/components/listings/ListingCardContainer";
 import Heading from "@/components/Heading";
-import getCurrentUser from "@/libs/actions/getCurrentUser";
 
-import ListingCardContainer from "../../components/listings/ListingCardContainer";
+import getCurrentUser from "@/libs/actions/getCurrentUser";
+import getFavoriteListings from "@/libs/actions/getFavoriteListings";
 
 const ListingPage = async () => {
   const listings = await getFavoriteListings();

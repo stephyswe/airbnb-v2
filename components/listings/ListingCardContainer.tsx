@@ -1,9 +1,11 @@
 "use client";
 
 import { User } from "@prisma/client";
-import ListingCard from "./ListingCard";
-import ContainerCard from "../ContainerCard";
-import { SafeListing } from "../../libs/types";
+
+import ListingCard from "@/components/listings/ListingCard";
+import ContainerCard from "@/components/ContainerCard";
+
+import { SafeListing } from "@/libs/types";
 
 interface CustomProps {
   listings: SafeListing[];

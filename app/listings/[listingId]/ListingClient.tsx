@@ -12,7 +12,7 @@ import {
   useCreateReservation,
   useDisabledDates,
 } from "@/libs/axios";
-import { getCategory } from "../../../libs/actions/getCategory";
+import { getCategory } from "@/libs/actions/getCategory";
 
 const initialDateRange = {
   startDate: new Date(),

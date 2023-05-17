@@ -7,11 +7,11 @@ import RentModal from "@/components/modals/RentModal";
 
 import ToasterProvider from "@/libs/providers/ToastProvider";
 
-import "./globals.css";
-import getCurrentUser from "../libs/actions/getCurrentUser";
+import "@/app/globals.css";
+import getCurrentUser from "@/libs/actions/getCurrentUser";
 import SearchModal from "@/components/modals/SearchModal";
 import { Suspense } from "react";
-import Provider from "./Provider";
+import Provider from "@/app/Provider";
 
 export const metadata = {
   title: "Create Next App",

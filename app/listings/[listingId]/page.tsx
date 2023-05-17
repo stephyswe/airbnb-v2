@@ -5,7 +5,7 @@ import getReservations from "@/libs/actions/getReservations";
 import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
 
-import ListingClient from "./ListingClient";
+import ListingClient from "@/app/listings/[listingId]/ListingClient";
 import ListingHead from "@/components/listings/ListingHead";
 
 interface IParams {

@@ -9,8 +9,8 @@ import useLoginModal from "@/libs/hooks/useLoginModal";
 import useRegisterModal from "@/libs/hooks/useRegisterModal";
 import useRentModal from "@/libs/hooks/useRentModal";
 
-import MenuItem from "./MenuItem";
-import Avatar from "../Avatar";
+import MenuItem from "@/components/navbar/MenuItem";
+import Avatar from "@/components/Avatar";
 import { User } from "@prisma/client";
 
 interface UserMenuProps {

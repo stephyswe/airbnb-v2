@@ -5,7 +5,7 @@ import Heading from "@/components/Heading";
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getReservations from "@/libs/actions/getReservations";
 
-import ListingCardContainerAction from "../../components/listings/ListingCardContainerAction";
+import ListingCardContainerAction from "@/components/listings/ListingCardContainerAction";
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();

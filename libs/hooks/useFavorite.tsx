@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react";
 import { toast } from "react-hot-toast";
 import { User } from "@prisma/client";
 
-import useLoginModal from "./useLoginModal";
+import useLoginModal from "@/libs/hooks/useLoginModal";
 
 interface IUseFavorite {
   listingId: string;
