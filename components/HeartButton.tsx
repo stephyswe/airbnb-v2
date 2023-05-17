@@ -3,22 +3,19 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import useFavorite from "@/libs/hooks/useFavorite";
-import { SafeUser } from "@/libs/types";
-
-import ClientOnly from "./ClientOnly";
+import { useSession } from "next-auth/react";
 
 interface HeartButtonProps {
   listingId: string;
-  currentUser?: SafeUser | null;
 }
 
-const HeartButton: React.FC<HeartButtonProps> = ({
-  listingId,
-  currentUser,
-}) => {
+const HeartButton: React.FC<HeartButtonProps> = ({ listingId }) => {
+  const session = useSession();
+  const { data: sessionData } = session;
+  console.log("heart sessionData", sessionData);
+
   const { hasFavorited, toggleFavorite } = useFavorite({
     listingId,
-    currentUser,
   });
 
   return (

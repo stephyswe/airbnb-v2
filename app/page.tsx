@@ -5,7 +5,6 @@ import ListingCard from "@/components/listings/ListingCard";
 import EmptyState from "@/components/EmptyState";
 
 import getListings, { IListingsParams } from "@/libs/actions/getListings";
-import getCurrentUser from "@/libs/actions/getCurrentUser";
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -13,7 +12,6 @@ interface HomeProps {
 
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
-  const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
     return <EmptyState showReset />;
@@ -37,11 +35,7 @@ const Home = async ({ searchParams }: HomeProps) => {
           "
       >
         {listings.map((listing: any) => (
-          <ListingCard
-            currentUser={currentUser}
-            key={listing.id}
-            data={listing}
-          />
+          <ListingCard key={listing.id} data={listing} />
         ))}
       </div>
     </Container>

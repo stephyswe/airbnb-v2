@@ -10,6 +10,8 @@ import ToasterProvider from "@/libs/providers/ToastProvider";
 import "./globals.css";
 import getCurrentUser from "../libs/actions/getCurrentUser";
 import SearchModal from "@/components/modals/SearchModal";
+import { Suspense } from "react";
+import Provider from "./Provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -30,14 +32,18 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ToasterProvider />
-        <LoginModal />
-        <RegisterModal />
-        <SearchModal />
-        <RentModal />
-        <Navbar currentUser={currentUser} />
+        <Provider>
+          <ToasterProvider />
+          <LoginModal />
+          <RegisterModal />
+          <SearchModal />
+          <RentModal />
+          <Navbar currentUser={currentUser} />
 
-        <div className="pb-20 pt-28">{children}</div>
+          <div className="pb-20 pt-28">
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+          </div>
+        </Provider>
       </body>
     </html>
   );

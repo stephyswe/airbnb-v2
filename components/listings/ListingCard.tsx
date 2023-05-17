@@ -10,7 +10,6 @@ import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
-import ClientOnly from "../ClientOnly";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -19,7 +18,6 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: SafeUser | null;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -29,7 +27,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
   disabled,
   actionLabel,
   actionId = "",
-  currentUser,
 }) => {
   const router = useRouter();
   const { getByValue } = useCountries();
@@ -102,7 +99,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             right-3
           "
           >
-            <HeartButton listingId={data.id} currentUser={currentUser} />
+            <HeartButton listingId={data.id} />
           </div>
         </div>
         <div className="font-semibold text-lg">
