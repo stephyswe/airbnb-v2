@@ -42,6 +42,7 @@ const PropertiesPage = async () => {
           currentUser={currentUser}
           route="listings"
           toastMessage="Listing deleted"
+          actionLabel="Delete property"
         />
       </div>
     </Container>

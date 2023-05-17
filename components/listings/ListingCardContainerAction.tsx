@@ -10,6 +10,7 @@ interface CustomProps {
   currentUser: User | null;
   route: string;
   toastMessage: string;
+  actionLabel: string;
 }
 
 const ListingCardContainerAction: React.FC<CustomProps> = ({
@@ -17,6 +18,7 @@ const ListingCardContainerAction: React.FC<CustomProps> = ({
   currentUser,
   route,
   toastMessage,
+  actionLabel
 }) => {
   const { onAction, deletingId } = useDeletion(route, toastMessage);
 
@@ -30,7 +32,7 @@ const ListingCardContainerAction: React.FC<CustomProps> = ({
           actionId={item.id}
           onAction={onAction}
           disabled={deletingId === item.id}
-          actionLabel="Delete property"
+          actionLabel={actionLabel}
           currentUser={currentUser}
         />
       ))}

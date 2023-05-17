@@ -46,6 +46,7 @@ const TripsPage = async () => {
           currentUser={currentUser}
           route="reservations"
           toastMessage="Reservation canceled"
+          actionLabel="Cancel reservation"
         />
       </div>
     </Container>
