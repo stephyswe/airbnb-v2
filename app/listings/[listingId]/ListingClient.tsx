@@ -1,18 +1,19 @@
 "use client";
 
+import { User } from "@prisma/client";
 import { useMemo, useState } from "react";
 import { Range } from "react-date-range";
 
-import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
 import ListingInfo from "@/components/listings/ListingInfo";
 import ListingReservation from "@/components/listings/ListingReservation";
-import { User } from "@prisma/client";
+
+import { getCategory } from "@/libs/actions/getCategory";
 import {
   useCalculateTotalPrice,
   useCreateReservation,
   useDisabledDates,
 } from "@/libs/axios";
-import { getCategory } from "@/libs/actions/getCategory";
+import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
 
 const initialDateRange = {
   startDate: new Date(),

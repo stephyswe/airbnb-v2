@@ -1,11 +1,10 @@
-import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
+import EmptyState from "@/components/EmptyState";
 import Heading from "@/components/Heading";
+import ListingCardContainerAction from "@/components/listings/ListingCardContainerAction";
 
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getReservations from "@/libs/actions/getReservations";
-
-import ListingCardContainerAction from "@/components/listings/ListingCardContainerAction";
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();

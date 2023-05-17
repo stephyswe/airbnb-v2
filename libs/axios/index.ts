@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import useLoginModal from "@/libs/hooks/useLoginModal";
 import { User } from "@prisma/client";
-import { Range } from "react-date-range";
+import axios from "axios";
 import { differenceInDays, eachDayOfInterval } from "date-fns";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Range } from "react-date-range";
+import { toast } from "react-hot-toast";
+
+import useLoginModal from "@/libs/hooks/useLoginModal";
 import { SafeReservation } from "@/libs/types";
 
 export const useDeletion = (route: string, toastMsg: string) => {

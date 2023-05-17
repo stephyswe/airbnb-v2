@@ -1,11 +1,9 @@
-import EmptyState from "@/components/EmptyState";
-
-import getCurrentUser from "@/libs/actions/getCurrentUser";
-import Heading from "@/components/Heading";
-
 import Container from "@/components/Container";
+import EmptyState from "@/components/EmptyState";
+import Heading from "@/components/Heading";
 import ListingCardContainerAction from "@/components/listings/ListingCardContainerAction";
 
+import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getListings from "@/libs/actions/getListings";
 
 const PropertiesPage = async () => {

@@ -1,7 +1,7 @@
-import EmptyState from "@/components/EmptyState";
 import Container from "@/components/Container";
-import ListingCardContainer from "@/components/listings/ListingCardContainer";
+import EmptyState from "@/components/EmptyState";
 import Heading from "@/components/Heading";
+import ListingCardContainer from "@/components/listings/ListingCardContainer";
 
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getFavoriteListings from "@/libs/actions/getFavoriteListings";

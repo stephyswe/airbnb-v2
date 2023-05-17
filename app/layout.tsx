@@ -1,17 +1,17 @@
 import { Nunito } from "next/font/google";
+import { Suspense } from "react";
 
-import Navbar from "@/components/navbar/Navbar";
+import Provider from "@/app/Provider";
+import "@/app/globals.css";
+
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";
 import RentModal from "@/components/modals/RentModal";
-
-import ToasterProvider from "@/libs/providers/ToastProvider";
-
-import "@/app/globals.css";
-import getCurrentUser from "@/libs/actions/getCurrentUser";
 import SearchModal from "@/components/modals/SearchModal";
-import { Suspense } from "react";
-import Provider from "@/app/Provider";
+import Navbar from "@/components/navbar/Navbar";
+
+import getCurrentUser from "@/libs/actions/getCurrentUser";
+import ToasterProvider from "@/libs/providers/ToastProvider";
 
 export const metadata = {
   title: "Create Next App",

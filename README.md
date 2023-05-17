@@ -1,23 +1,27 @@
 ## ENV - Commits
 
 ### MongoDB
+
 feat(components): Register functionality, MongoDB, Prisma Setup
 
 ### Github & Google
+
 feat(components): Login functionality - getCurrentUser & upd. RegisterModal
 
 ### Cloudinary
+
 feat(components): Listing creation step 4
 
 ## Cloudinary:
 
 ### Cloud Name
+
 Login - Dashboard - Cloud Name
 
 ### Upload Preset
+
 Login - Settings (lower-left) - Upload - Add upload preset
 Create: Unsigned, Copy preset name. Save.
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

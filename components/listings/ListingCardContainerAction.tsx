@@ -2,11 +2,11 @@
 
 import { User } from "@prisma/client";
 
-import ListingCard from "@/components/listings/ListingCard";
 import ContainerCard from "@/components/ContainerCard";
+import ListingCard from "@/components/listings/ListingCard";
 
-import { SafeListing, SafeReservation } from "@/libs/types";
 import { useDeletion } from "@/libs/axios";
+import { SafeListing, SafeReservation } from "@/libs/types";
 
 interface CustomProps {
   data: SafeListing[] | SafeReservation[];

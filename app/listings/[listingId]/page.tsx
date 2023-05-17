@@ -1,12 +1,12 @@
+import ListingClient from "@/app/listings/[listingId]/ListingClient";
+
+import Container from "@/components/Container";
+import EmptyState from "@/components/EmptyState";
+import ListingHead from "@/components/listings/ListingHead";
+
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getListingById from "@/libs/actions/getListingById";
 import getReservations from "@/libs/actions/getReservations";
-
-import EmptyState from "@/components/EmptyState";
-import Container from "@/components/Container";
-
-import ListingClient from "@/app/listings/[listingId]/ListingClient";
-import ListingHead from "@/components/listings/ListingHead";
 
 interface IParams {
   listingId?: string;
