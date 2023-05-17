@@ -3,6 +3,7 @@
 import { User } from "@prisma/client";
 import { useDeletion } from "../../libs/axios";
 import ListingCard from "./ListingCard";
+import ContainerCard from "../ContainerCard";
 import { SafeListing, SafeReservation } from "../../libs/types";
 
 interface CustomProps {
@@ -23,19 +24,7 @@ const ListingCardContainerAction: React.FC<CustomProps> = ({
   const { onAction, deletingId } = useDeletion(route, toastMessage);
 
   return (
-    <div
-      className="
-      mt-10
-      grid
-      grid-cols-1
-      sm:grid-cols-2
-      md:grid-cols-3
-      lg:grid-cols-4
-      xl:grid-cols-5
-      2xl:grid-cols-6
-      gap-8
-    "
-    >
+    <ContainerCard>
       {data.map((item: any) => (
         <ListingCard
           key={item.id}
@@ -48,7 +37,7 @@ const ListingCardContainerAction: React.FC<CustomProps> = ({
           currentUser={currentUser}
         />
       ))}
-    </div>
+    </ContainerCard>
   );
 };
 
