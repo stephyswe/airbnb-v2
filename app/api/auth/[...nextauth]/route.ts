@@ -59,6 +59,24 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
+  callbacks: {
+    async session({ session, token }) {
+      if (token) {
+        const currentUser = await prisma.user.findUnique({
+          where: {
+            email: session?.user?.email as string,
+          },
+        });
+
+        if (session.user) {
+          session.user.id = currentUser?.id ?? "";
+          session.user.favoriteIds = currentUser?.favoriteIds ?? [];
+        }
+      }
+
+      return session;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
 

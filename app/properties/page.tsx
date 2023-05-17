@@ -1,35 +1,48 @@
 import EmptyState from "@/components/EmptyState";
-import ClientOnly from "@/components/ClientOnly";
 
 import getCurrentUser from "@/libs/actions/getCurrentUser";
-import getListings from "@/libs/actions/getListings";
+import Heading from "@/components/Heading";
 
-import PropertiesClient from "./PropertiesClient";
+import Container from "@/components/Container";
+import ListingCardContainerAction from "@/components/listings/ListingCardContainerAction";
+
+import getListings from "@/libs/actions/getListings";
 
 const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return <EmptyState title="Unauthorized" subtitle="Please login" />;
-  }
-
-  const listings = await getListings({ userId: currentUser.id });
+  const listings = await getListings({ userId: currentUser?.id });
 
   if (listings.length === 0) {
     return (
-      <ClientOnly>
-        <EmptyState
-          title="No properties found"
-          subtitle="Looks like you have no properties."
-        />
-      </ClientOnly>
+      <EmptyState
+        title="No properties found"
+        subtitle="Looks like you have no properties."
+      />
     );
   }
 
   return (
-    <ClientOnly>
-      <PropertiesClient listings={listings} currentUser={currentUser} />
-    </ClientOnly>
+    <Container>
+      <Heading title="Properties" subtitle="List of your properties" />
+      <div
+        className="
+          mt-10
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          md:grid-cols-3
+          lg:grid-cols-4
+          xl:grid-cols-5
+          2xl:grid-cols-6
+          gap-8
+        "
+      >
+        <ListingCardContainerAction
+          listings={listings}
+          currentUser={currentUser}
+        />
+      </div>
+    </Container>
   );
 };
 

@@ -6,7 +6,8 @@ import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 
 import useCountries from "@/libs/hooks/useCountries";
-import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
+import { SafeListing, SafeReservation } from "@/libs/types";
+import { User } from "@prisma/client";
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
@@ -18,6 +19,7 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
+  currentUser: User | null;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -27,6 +29,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   disabled,
   actionLabel,
   actionId = "",
+  currentUser,
 }) => {
   const router = useRouter();
   const { getByValue } = useCountries();
@@ -99,7 +102,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             right-3
           "
           >
-            <HeartButton listingId={data.id} />
+            <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
         <div className="font-semibold text-lg">

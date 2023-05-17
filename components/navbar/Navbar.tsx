@@ -1,13 +1,12 @@
-import { SafeUser } from "@/libs/types";
-
 import Categories from "./Categories";
 import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import { User } from "@prisma/client";
 
 interface NavbarProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
@@ -34,7 +33,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             <Search />
             <div className="flex">
               <UserMenu currentUser={currentUser} />
-              {process.env.TYPE}
             </div>
           </div>
         </Container>

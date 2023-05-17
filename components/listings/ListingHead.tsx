@@ -3,17 +3,17 @@
 import Image from "next/image";
 
 import useCountries from "@/libs/hooks/useCountries";
-import { SafeUser } from "@/libs/types";
 
 import Heading from "../Heading";
 import HeartButton from "../HeartButton";
+import { User } from "@prisma/client";
 
 interface ListingHeadProps {
   title: string;
   locationValue: string;
   imageSrc: string;
   id: string;
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({

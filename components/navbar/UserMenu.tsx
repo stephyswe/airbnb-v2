@@ -8,13 +8,13 @@ import { useRouter } from "next/navigation";
 import useLoginModal from "@/libs/hooks/useLoginModal";
 import useRegisterModal from "@/libs/hooks/useRegisterModal";
 import useRentModal from "@/libs/hooks/useRentModal";
-import { SafeUser } from "@/libs/types";
 
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
+import { User } from "@prisma/client";
 
 interface UserMenuProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
