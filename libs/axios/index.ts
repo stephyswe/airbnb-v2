@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import useLoginModal from "../hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { Range } from "react-date-range";
+import { differenceInDays } from "date-fns";
 
 export const useDeletion = (route: string, toastMsg: string) => {
   const router = useRouter();
@@ -77,4 +78,25 @@ export const useCreateReservation = () => {
   );
 
   return createReservation;
+};
+
+export const useCalculateTotalPrice = (
+  dateRange: Range,
+  listingPrice: number
+): number => {
+  const [totalPrice, setTotalPrice] = useState(listingPrice);
+
+  useEffect(() => {
+    if (dateRange.startDate && dateRange.endDate) {
+      const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
+
+      if (dayCount && listingPrice) {
+        setTotalPrice((dayCount + 1) * listingPrice);
+      } else {
+        setTotalPrice(listingPrice);
+      }
+    }
+  }, [dateRange, listingPrice]);
+
+  return totalPrice;
 };

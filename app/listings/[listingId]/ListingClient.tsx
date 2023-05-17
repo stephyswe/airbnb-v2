@@ -2,17 +2,17 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Range } from "react-date-range";
-import { useRouter } from "next/navigation";
 import { differenceInDays, eachDayOfInterval } from "date-fns";
 
-import useLoginModal from "@/libs/hooks/useLoginModal";
 import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
-
 import { categories } from "@/components/navbar/Categories";
 import ListingInfo from "@/components/listings/ListingInfo";
 import ListingReservation from "@/components/listings/ListingReservation";
 import { User } from "@prisma/client";
-import { useCreateReservation } from "../../../libs/axios";
+import {
+  useCalculateTotalPrice,
+  useCreateReservation,
+} from "../../../libs/axios";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -33,9 +33,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
   reservations = [],
   currentUser,
 }) => {
-  const loginModal = useLoginModal();
-  const router = useRouter();
-
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
@@ -56,10 +53,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
   }, [listing.category]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const createReservation = useCreateReservation();
+
+  const totalPrice = useCalculateTotalPrice(dateRange, listing.price);
 
   const onCreateReservation = () => {
     createReservation(
@@ -72,18 +70,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
       setDateRange
     );
   };
-
-  useEffect(() => {
-    if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
-
-      if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
-      } else {
-        setTotalPrice(listing.price);
-      }
-    }
-  }, [dateRange, listing.price]);
 
   return (
     <>
