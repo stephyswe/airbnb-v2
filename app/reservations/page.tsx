@@ -1,42 +1,36 @@
 import EmptyState from "@/components/EmptyState";
-import ClientOnly from "@/components/ClientOnly";
+import Container from "@/components/Container";
+import Heading from "@/components/Heading";
 
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getReservations from "@/libs/actions/getReservations";
 
-import ReservationsClient from "./ReservationsClient";
+import ListingCardContainerAction from "../../components/listings/ListingCardContainerAction";
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return (
-      <ClientOnly>
-        <EmptyState title="Unauthorized" subtitle="Please login" />
-      </ClientOnly>
-    );
-  }
-
-  const reservations = await getReservations({ authorId: currentUser.id });
+  const reservations = await getReservations({ authorId: currentUser?.id });
 
   if (reservations.length === 0) {
     return (
-      <ClientOnly>
-        <EmptyState
-          title="No reservations found"
-          subtitle="Looks like you have no reservations on your properties."
-        />
-      </ClientOnly>
+      <EmptyState
+        title="No reservations found"
+        subtitle="Looks like you have no reservations on your properties."
+      />
     );
   }
 
   return (
-    <ClientOnly>
-      <ReservationsClient
-        reservations={reservations}
+    <Container>
+      <Heading title="Reservations" subtitle="Bookings on your properties" />
+      <ListingCardContainerAction
+        data={reservations}
         currentUser={currentUser}
+        route="reservations"
+        toastMessage="Reservation canceled"
+        actionLabel="Cancel guest reservation"
       />
-    </ClientOnly>
+    </Container>
   );
 };
 
