@@ -38,8 +38,10 @@ const PropertiesPage = async () => {
         "
       >
         <ListingCardContainerAction
-          listings={listings}
+          data={listings}
           currentUser={currentUser}
+          route="listings"
+          toastMessage="Listing deleted"
         />
       </div>
     </Container>

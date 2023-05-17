@@ -3,17 +3,17 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
-export const useListingDeletion = () => {
+export const useDeletion = (route: string, toastMsg: string) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
-  const deleteListing = (id: string) => {
+  const onAction = (id: string) => {
     setDeletingId(id);
 
     axios
-      .delete(`/api/listings/${id}`)
+      .delete(`/api/${route}/${id}`)
       .then(() => {
-        toast.success("Listing deleted");
+        toast.success(toastMsg);
         router.refresh();
       })
       .catch((error) => {
@@ -25,7 +25,7 @@ export const useListingDeletion = () => {
   };
 
   return {
-    deleteListing,
+    onAction,
     deletingId,
   };
 };

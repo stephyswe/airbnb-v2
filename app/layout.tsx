@@ -36,13 +36,12 @@ export default async function RootLayout({
           <ToasterProvider />
           <LoginModal />
           <RegisterModal />
-          <SearchModal />
           <RentModal />
-          <Navbar currentUser={currentUser} />
-
-          <div className="pb-20 pt-28">
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <SearchModal />
+            <Navbar currentUser={currentUser} />
+          </Suspense>
+          <div className="pb-20 pt-28">{children}</div>
         </Provider>
       </body>
     </html>

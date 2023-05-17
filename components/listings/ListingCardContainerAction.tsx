@@ -1,29 +1,33 @@
 "use client";
 
 import { User } from "@prisma/client";
-import { useListingDeletion } from "../../libs/axios";
+import { useDeletion } from "../../libs/axios";
 import ListingCard from "./ListingCard";
-import { SafeListing } from "../../libs/types";
+import { SafeListing, SafeReservation } from "../../libs/types";
 
 interface CustomProps {
-  listings: SafeListing[];
+  data: SafeListing[] | SafeReservation[];
   currentUser: User | null;
+  route: string;
+  toastMessage: string;
 }
 
 const ListingCardContainerAction: React.FC<CustomProps> = ({
-  listings,
+  data,
   currentUser,
+  route,
+  toastMessage,
 }) => {
-  const { deleteListing, deletingId } = useListingDeletion();
+  const { onAction, deletingId } = useDeletion(route, toastMessage);
 
   return (
     <>
-      {listings.map((listing: any) => (
+      {data.map((listing: any) => (
         <ListingCard
           key={listing.id}
           data={listing}
           actionId={listing.id}
-          onAction={deleteListing}
+          onAction={onAction}
           disabled={deletingId === listing.id}
           actionLabel="Delete property"
           currentUser={currentUser}

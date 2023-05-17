@@ -1,39 +1,52 @@
 import EmptyState from "@/components/EmptyState";
-import ClientOnly from "@/components/ClientOnly";
 
 import getCurrentUser from "@/libs/actions/getCurrentUser";
 import getReservations from "@/libs/actions/getReservations";
 
-import TripsClient from "./TripsClient";
+import Heading from "../../components/Heading";
+import Container from "../../components/Container";
+import ListingCardContainerAction from "../../components/listings/ListingCardContainerAction";
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return (
-      <ClientOnly>
-        <EmptyState title="Unauthorized" subtitle="Please login" />
-      </ClientOnly>
-    );
-  }
-
-  const reservations = await getReservations({ userId: currentUser.id });
+  const reservations = await getReservations({ userId: currentUser?.id });
 
   if (reservations.length === 0) {
     return (
-      <ClientOnly>
-        <EmptyState
-          title="No trips found"
-          subtitle="Looks like you havent reserved any trips."
-        />
-      </ClientOnly>
+      <EmptyState
+        title="No trips found"
+        subtitle="Looks like you havent reserved any trips."
+      />
     );
   }
 
   return (
-    <ClientOnly>
-      <TripsClient reservations={reservations} currentUser={currentUser} />
-    </ClientOnly>
+    <Container>
+      <Heading
+        title="Trips"
+        subtitle="Where you've been and where you're going"
+      />
+      <div
+        className="
+          mt-10
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          md:grid-cols-3
+          lg:grid-cols-4
+          xl:grid-cols-5
+          2xl:grid-cols-6
+          gap-8
+        "
+      >
+        <ListingCardContainerAction
+          data={reservations}
+          currentUser={currentUser}
+          route="reservations"
+          toastMessage="Reservation canceled"
+        />
+      </div>
+    </Container>
   );
 };
 
