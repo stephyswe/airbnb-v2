@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import useLoginModal from "../hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { Range } from "react-date-range";
-import { differenceInDays } from "date-fns";
+import { differenceInDays, eachDayOfInterval } from "date-fns";
+import { SafeReservation } from "../types";
 
 export const useDeletion = (route: string, toastMsg: string) => {
   const router = useRouter();
@@ -99,4 +100,23 @@ export const useCalculateTotalPrice = (
   }, [dateRange, listingPrice]);
 
   return totalPrice;
+};
+
+export const useDisabledDates = (reservations: SafeReservation[]): Date[] => {
+  const disabledDates = useMemo(() => {
+    let dates: Date[] = [];
+
+    reservations.forEach((reservation: any) => {
+      const range = eachDayOfInterval({
+        start: new Date(reservation.startDate),
+        end: new Date(reservation.endDate),
+      });
+
+      dates = [...dates, ...range];
+    });
+
+    return dates;
+  }, [reservations]);
+
+  return disabledDates;
 };

@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Range } from "react-date-range";
-import { differenceInDays, eachDayOfInterval } from "date-fns";
 
 import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
 import { categories } from "@/components/navbar/Categories";
@@ -12,6 +11,7 @@ import { User } from "@prisma/client";
 import {
   useCalculateTotalPrice,
   useCreateReservation,
+  useDisabledDates,
 } from "../../../libs/axios";
 
 const initialDateRange = {
@@ -33,31 +33,16 @@ const ListingClient: React.FC<ListingClientProps> = ({
   reservations = [],
   currentUser,
 }) => {
-  const disabledDates = useMemo(() => {
-    let dates: Date[] = [];
+  const [isLoading, setIsLoading] = useState(false);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
-    reservations.forEach((reservation: any) => {
-      const range = eachDayOfInterval({
-        start: new Date(reservation.startDate),
-        end: new Date(reservation.endDate),
-      });
-
-      dates = [...dates, ...range];
-    });
-
-    return dates;
-  }, [reservations]);
+  const disabledDates = useDisabledDates(reservations);
+  const createReservation = useCreateReservation();
+  const totalPrice = useCalculateTotalPrice(dateRange, listing.price);
 
   const category = useMemo(() => {
     return categories.find((items) => items.label === listing.category);
   }, [listing.category]);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
-
-  const createReservation = useCreateReservation();
-
-  const totalPrice = useCalculateTotalPrice(dateRange, listing.price);
 
   const onCreateReservation = () => {
     createReservation(
