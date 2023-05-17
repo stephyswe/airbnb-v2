@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { Range } from "react-date-range";
 
 import { SafeListing, SafeReservation, SafeUser } from "@/libs/types";
-import { categories } from "@/components/navbar/Categories";
 import ListingInfo from "@/components/listings/ListingInfo";
 import ListingReservation from "@/components/listings/ListingReservation";
 import { User } from "@prisma/client";
@@ -12,7 +11,8 @@ import {
   useCalculateTotalPrice,
   useCreateReservation,
   useDisabledDates,
-} from "../../../libs/axios";
+} from "@/libs/axios";
+import { getCategory } from "../../../libs/actions/getCategory";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -39,10 +39,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const disabledDates = useDisabledDates(reservations);
   const createReservation = useCreateReservation();
   const totalPrice = useCalculateTotalPrice(dateRange, listing.price);
-
-  const category = useMemo(() => {
-    return categories.find((items) => items.label === listing.category);
-  }, [listing.category]);
+  const category = useMemo(() => getCategory(listing), [listing]);
 
   const onCreateReservation = () => {
     createReservation(
