@@ -11,6 +11,8 @@ const TripsPage = async () => {
   const currentUser = await getCurrentUser();
   const reservations = await getReservations({ userId: currentUser?.id });
 
+  console.log("reservations", reservations);
+
   if (reservations.length === 0) {
     return (
       <EmptyState

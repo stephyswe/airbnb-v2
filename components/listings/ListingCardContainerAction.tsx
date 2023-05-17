@@ -22,13 +22,14 @@ const ListingCardContainerAction: React.FC<CustomProps> = ({
 
   return (
     <>
-      {data.map((listing: any) => (
+      {data.map((item: any) => (
         <ListingCard
-          key={listing.id}
-          data={listing}
-          actionId={listing.id}
+          key={item.id}
+          data={item.listing || item}
+          reservation={item.listing ? item : undefined}
+          actionId={item.id}
           onAction={onAction}
-          disabled={deletingId === listing.id}
+          disabled={deletingId === item.id}
           actionLabel="Delete property"
           currentUser={currentUser}
         />
